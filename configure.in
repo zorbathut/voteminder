@@ -1,0 +1,33 @@
+AC_INIT(main.cpp)
+
+AC_CONFIG_AUX_DIR([build-aux])
+
+AC_PROG_CXXCPP
+AC_PROG_CXX
+AC_LANG_CPLUSPLUS
+
+AC_CANONICAL_TARGET
+case "${target_os}" in
+  cygwin)
+    CPPFLAGS="-I/usr/mingw/local/include -I/usr/mingw/local/include/boost-1_33_1 -mno-cygwin"
+    LDFLAGS="-L/usr/mingw/local/lib -mno-cygwin"
+    
+    STDCPPFLAGS="$STDCPPFLAGS -DVECTOR_PARANOIA" # This should really only exist on Zorba's personal hacked headers
+    LDFLAGS="$LDFLAGS -lboost_regex-mgw-mt"
+
+    MING="-lmingw32"
+
+    ;;
+esac
+    
+AC_CHECK_HEADER([boost/noncopyable.hpp],,AC_MSG_ERROR([Mafia Voteminder requires Boost.]))
+
+STDCPPFLAGS="$STDCPPFLAGS $CPPFLAGS"
+STDLDFLAGS="$LDFLAGS $MING"
+
+STDCXXFLAGS="$STDCPPFLAGS"
+
+AC_SUBST(STDCXXFLAGS)
+AC_SUBST(STDLDFLAGS)
+
+AC_OUTPUT(Makefile)
