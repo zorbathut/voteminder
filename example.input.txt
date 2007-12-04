@@ -1,6 +1,8 @@
 # Input file example!
-# Voteminder will read from all "x.input.txt" files and generate "x.output.txt" files. That way you can easily run several games with it simultaneously.
-# Comments in input files are shown by using # characters. If your players have #s in their names, that's too bad. You can put comments after valid lines without any problem.
+# If you're using Notepad, go to "edit" and turn on "word wrap".
+
+# Voteminder will read from all "x.input.txt" files and generate "x.output.txt" files whenever it's run. That way you can easily run several games with it simultaneously. Feel free to make a copy of this named "theshield.input.txt" or "armageddon.input.txt" or whatever.
+# Comments in input files are shown by using # characters. If your players have #s in their names somehow, that's too bad, they can't. You can put comments after valid lines without any problem.
 
 # Global parameters first.
 
@@ -35,7 +37,7 @@ Women's Rights?
 (WR?)
 
 Xythar
-fong
+raven31 # Digits are fine.
 windshipper
 
 Jose Valasquez
@@ -47,15 +49,16 @@ me in reverse
 
 # I recommend putting spaces beween groups of aliases, but it's not really required, just convenient.
 
+# Now we start the actual voting!
 VOTELIST
 
 # Votes can be placed in a few different ways. Here's the most verbose.
 
 zorba votes wr
-fong votes xythar
+raven31 votes xythar
 zorba unvotes
 zorba votes alasdair
-xythar votes fong
+xythar votes raven31
 
 # You can also use "vote" or even just "v" for voting, and "unvote" or "u" for unvoting
 
@@ -68,20 +71,20 @@ mir v zorba
 # And if you're really a fan of short lines, you can omit "v" or "u" entirely.
 
 zorba
-fong
-fong alasdair
+raven31
+raven31 alasdair
 zorba alasdair
-wr? fong
-wr unvote # No problem using two different aliases to refer to the same player.
+wr? raven31
+wr # No problem using two different aliases to refer to the same player.
 wr alasdair
 
 # Or combine them however you want. I don't recommend this however, it's just confusing. I will not be giving a demonstration of this.
 
 xythar alasdair # Note that xythar didn't unvote - you'll see this in the output.
+mir
 windshipper alasdair
 jv
 jv alasdair # Alasdair gets lynched here due to our 6-vote custom threshold
-mir
-mir alasdair # This vote is after-hammer, and will be ignored. It'll be mentioned in the output however.
+mir alasdair # This vote is after-hammer, and will be ignored. It'll be mentioned in the output however. (Bandwagoner.)
 
 # That's it.
