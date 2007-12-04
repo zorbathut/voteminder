@@ -1,6 +1,6 @@
 
 STDCXXFLAGS :=  -DVECTOR_PARANOIA -I/usr/mingw/local/include -I/usr/mingw/local/include/boost-1_33_1 -mno-cygwin -DDPRINTF_MARKUP -Wall -Wno-sign-compare -Wno-uninitialized -g
-STDLDFLAGS := -L/usr/mingw/local/lib -mno-cygwin -lboost_regex-mgw-mt -lmingw32 -g
+STDLDFLAGS := -L/usr/mingw/local/lib -mno-cygwin -lboost_regex-mgw-mt -lboost_filesystem-mgw-mt -lmingw32 -g
 
 VOTEMINDERSOURCES := main debug parse util os
 CONSOLECXXFLAGS := $(STDCXXFLAGS) -O0

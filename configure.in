@@ -13,7 +13,7 @@ case "${target_os}" in
     LDFLAGS="-L/usr/mingw/local/lib -mno-cygwin"
     
     STDCPPFLAGS="$STDCPPFLAGS -DVECTOR_PARANOIA" # This should really only exist on Zorba's personal hacked headers
-    LDFLAGS="$LDFLAGS -lboost_regex-mgw-mt"
+    LDFLAGS="$LDFLAGS -lboost_regex-mgw-mt -lboost_filesystem-mgw-mt"
 
     MING="-lmingw32"
 

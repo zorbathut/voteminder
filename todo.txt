@@ -1,1 +1,2 @@
-- lol
+- convert example into crlf
+- make sure parse functions handle crlf

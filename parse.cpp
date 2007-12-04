@@ -102,7 +102,7 @@ istream &getLineStripped(istream &ifs, string *out, int *line) {
     *out = string(out->begin(), find(out->begin(), out->end(), '#'));
     while(out->size() && isspace(*out->begin()))
       out->erase(out->begin());
-    while(out->size() && isspace((*out)[out->size()-1]))
+    while(out->size() && (isspace((*out)[out->size()-1]) || (*out)[out->size()-1] == '\r'))
       out->erase(out->end() - 1);
     if(out->size())
       return ifs;
