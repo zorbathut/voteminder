@@ -132,7 +132,7 @@ void process_file(const string &infname) {
       int user = -1;
       int target = -1;
       
-      if(toki.size() == 1 || toki.size() == 2 && (toki[1] == "u" || toki[1] == "unvote")) {
+      if(toki.size() == 1 || toki.size() == 2 && (toki[1] == "u" || toki[1] == "unvote" || toki[1] == "unvotes")) {
         CONFIRM(nicklookup.count(toki[0]), "I have no idea who " + toki[0] + " is");
         voting = false;
         user = nicklookup[toki[0]];
@@ -195,7 +195,47 @@ void process_file(const string &infname) {
     }
   }
   
+  out << endl;
+  out << endl;
   
+  // This is going to be a bit of a hack.
+  for(int vc = nicks.size(); vc >= 0; vc--) {
+    for(int i = 0; i < votehistory.size(); i++) {
+      if(votecounts[i] != vc)
+        continue;
+      if(!votehistory[i].size())
+        continue;
+      string voteline;
+      
+      for(int j = votehistory[i].size() - 1; j >= 0; j--) {
+        if(voteline.size())
+          voteline = ", " + voteline;
+        if(votehistory[i][j].first && currentvote.count(votehistory[i][j].second) && currentvote[votehistory[i][j].second] == i) { // Active vote
+          voteline = "[b]" + nicks[votehistory[i][j].second] + "[/b]" + voteline;
+          currentvote.erase(votehistory[i][j].second);
+        } else if(votehistory[i][j].first) { // Vote that has since been removed
+          voteline = nicks[votehistory[i][j].second] + voteline;
+        } else { // Unvote
+          voteline = "[s]" + nicks[votehistory[i][j].second] + "[/s]" + voteline;
+        }
+      }
+      
+      voteline = StringPrintf("%s (%d): ", nicks[i].c_str(), votecounts[i]) + voteline;
+      
+      out << voteline << endl;
+      dprintf("%s\n", voteline.c_str());
+    }
+  }
+  
+  CHECK(currentvote.size() == 0);
+  
+  out << endl;
+  out << endl;
+  
+  for(int i = 0; i < warnings.size(); i++) {
+    out << warnings[i] << endl;
+    dprintf("%s\n", warnings[i].c_str());
+  }
 }
 
 int main() {

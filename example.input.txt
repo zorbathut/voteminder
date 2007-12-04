@@ -1,0 +1,87 @@
+# Input file example!
+# Voteminder will read from all "x.input.txt" files and generate "x.output.txt" files. That way you can easily run several games with it simultaneously.
+# Comments in input files are shown by using # characters. If your players have #s in their names, that's too bad. You can put comments after valid lines without any problem.
+
+# Global parameters first.
+
+# For debugging output, uncomment the next.
+# verbose
+
+# If you need to explicitly state the lynch threshold, you can do it here. Remove this line (or comment it out) and lynch threshold will default to a strict majority of however many players there are, which is 99% of the time what you want. This only matters so that Voteminder can let you know when someone should've been hammered - if you don't want that functionality, feel free to do "lynchthreshold=1000" or something crazy.
+lynchthreshold=6
+
+# If you want players to be forced to unvote manually, remove this line. Either way, the program will spit out warnings at the end of the vote sheet to let you know that the player failed to unvote - with this removed, it just won't automatically force the player to unvote.
+autounvote
+
+# If you want to include votes cast after a hammer, uncomment the next line.
+# includeposthammervotes
+
+# Now the player list! This token says that the player list is beginning.
+PLAYERLIST
+
+# List players exactly how you want them displayed.
+Mills
+
+# If a player has a long name, you can add aliases for them also so you can write their name more easily. Aliases (and player names) are case-insensitive.
+ZorbaTHut
+(Zorba)
+
+AlasdairC
+(Alasdair)
+
+# Players can have as many aliases as you want. Aliases may not contain spaces. Player names may, but if they do, you *must* include at least one alias, and the player name won't be usable in the normal vote recording system. Basically, whatever you use to recognize players must not have a space.
+Women's Rights?
+(WR)
+(WR?)
+
+Xythar
+fong
+windshipper
+
+Jose Valasquez
+(Jose)
+(JV)
+
+me in reverse
+(mir)
+
+# I recommend putting spaces beween groups of aliases, but it's not really required, just convenient.
+
+VOTELIST
+
+# Votes can be placed in a few different ways. Here's the most verbose.
+
+zorba votes wr
+fong votes xythar
+zorba unvotes
+zorba votes alasdair
+xythar votes fong
+
+# You can also use "vote" or even just "v" for voting, and "unvote" or "u" for unvoting
+
+jv vote mir
+mir vote jv # OMGUS!
+jv unvote
+mir u
+mir v zorba
+
+# And if you're really a fan of short lines, you can omit "v" or "u" entirely.
+
+zorba
+fong
+fong alasdair
+zorba alasdair
+wr? fong
+wr unvote # No problem using two different aliases to refer to the same player.
+wr alasdair
+
+# Or combine them however you want. I don't recommend this however, it's just confusing. I will not be giving a demonstration of this.
+
+xythar alasdair # Note that xythar didn't unvote - you'll see this in the output.
+windshipper alasdair
+jv
+jv alasdair # Alasdair gets lynched here due to our 6-vote custom threshold
+mir
+mir alasdair # This vote is after-hammer, and will be ignored. It'll be mentioned in the output however.
+
+# That's it.
