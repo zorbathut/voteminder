@@ -29,7 +29,8 @@ package: voteminder
 	rm -rf voteminder.zip
 	mkdir deploy
 	cp voteminder.exe deploy
-	strip -s deploy/*.exe deploy/*.dll
+	cp example.input.txt deploy
+	strip -s deploy/*.exe #deploy/*.dll
 	cd deploy ; zip -9 -r ../voteminder.zip *
 	rm -rf deploy
 

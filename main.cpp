@@ -138,7 +138,7 @@ void process_file(const string &infname) {
         user = nicklookup[toki[0]];
       } else if(toki.size() == 2 || toki.size() == 3) {
         CONFIRM(nicklookup.count(toki[0]), "I have no idea who " + toki[0] + " is");
-        CONFIRM(nicklookup.count(toki.back()), "I have no idea who " + toki[0] + " is");
+        CONFIRM(nicklookup.count(toki.back()), "I have no idea who " + toki.back() + " is");
         CONFIRM(toki.size() == 2 || toki[1] == "votes" || toki[1] == "vote" || toki[1] == "v", StringPrintf("'%s' is not a valid thing for %s to do to %s", toki[1].c_str(), toki[0].c_str(), toki[2].c_str()));
         voting = true;
         user = nicklookup[toki[0]];
@@ -211,7 +211,7 @@ void process_file(const string &infname) {
         if(voteline.size())
           voteline = ", " + voteline;
         if(votehistory[i][j].first && currentvote.count(votehistory[i][j].second) && currentvote[votehistory[i][j].second] == i) { // Active vote
-          voteline = "[b]" + nicks[votehistory[i][j].second] + "[/b]" + voteline;
+          voteline = "[u]" + nicks[votehistory[i][j].second] + "[/u]" + voteline;
           currentvote.erase(votehistory[i][j].second);
         } else if(votehistory[i][j].first) { // Vote that has since been removed
           voteline = nicks[votehistory[i][j].second] + voteline;
@@ -220,7 +220,7 @@ void process_file(const string &infname) {
         }
       }
       
-      voteline = StringPrintf("%s (%d): ", nicks[i].c_str(), votecounts[i]) + voteline;
+      voteline = StringPrintf("[b]%s (%d):[/b] ", nicks[i].c_str(), votecounts[i]) + voteline;
       
       out << voteline << endl;
       dprintf("%s\n", voteline.c_str());

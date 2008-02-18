@@ -1,5 +1,5 @@
 # Input file example!
-# If you're using Notepad, go to "edit" and turn on "word wrap".
+# If you're using Notepad, go to "format" and turn on "word wrap".
 
 # Voteminder will read from all "x.input.txt" files and generate "x.output.txt" files whenever it's run. That way you can easily run several games with it simultaneously. Feel free to make a copy of this named "theshield.input.txt" or "armageddon.input.txt" or whatever.
 # Comments in input files are shown by using # characters. If your players have #s in their names somehow, that's too bad, they can't. You can put comments after valid lines without any problem.
@@ -9,8 +9,8 @@
 # For debugging output, uncomment the next.
 # verbose
 
-# If you need to explicitly state the lynch threshold, you can do it here. Remove this line (or comment it out) and lynch threshold will default to a strict majority of however many players there are, which is 99% of the time what you want. This only matters so that Voteminder can let you know when someone should've been hammered - if you don't want that functionality, feel free to do "lynchthreshold=1000" or something crazy.
-lynchthreshold=6
+# If you need to explicitly state the lynch threshold, you can do it here. Remove this line (or comment it out) and lynch threshold will default to a strict majority of however many players there are, which is 99% of the time what you want. This only matters so that Voteminder can let you know when someone should've been hammered - if you don't want that functionality, feel free to do "lynchthreshold=1000" or something crazy. (In this example, lynching has been set to be 5 votes rather than 6.)
+lynchthreshold=5
 
 # If you want players to be forced to unvote manually, remove this line. Either way, the program will spit out warnings at the end of the vote sheet to let you know that the player failed to unvote - with this removed, it just won't automatically force the player to unvote.
 autounvote
@@ -47,6 +47,9 @@ Jose Valasquez
 me in reverse
 (mir)
 
+buggmoo
+krang
+
 # I recommend putting spaces beween groups of aliases, but it's not really required, just convenient.
 
 # Now we start the actual voting!
@@ -57,7 +60,7 @@ VOTELIST
 zorba votes wr
 raven31 votes xythar
 zorba unvotes
-zorba votes alasdair
+zorba votes zorba # Handles emo votes properly :D
 xythar votes raven31
 
 # You can also use "vote" or even just "v" for voting, and "unvote" or "u" for unvoting
@@ -80,11 +83,13 @@ wr alasdair
 
 # Or combine them however you want. I don't recommend this however, it's just confusing. I will not be giving a demonstration of this.
 
+buggmoo zorba
+krang wr?
 xythar alasdair # Note that xythar didn't unvote - you'll see this in the output.
 mir
-windshipper alasdair
+windshipper alasdair # Alasdair gets lynched here due to our 5-vote custom threshold. Everything after this will be ignored, but mentioned in the output. (Bandwagoners.)
 jv
-jv alasdair # Alasdair gets lynched here due to our 6-vote custom threshold
-mir alasdair # This vote is after-hammer, and will be ignored. It'll be mentioned in the output however. (Bandwagoner.)
+jv alasdair 
+mir alasdair
 
 # That's it.
